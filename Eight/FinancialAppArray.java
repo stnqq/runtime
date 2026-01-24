@@ -40,6 +40,12 @@ public class FinancialAppArray {
                 expensesManager.printAllExpenses();
             } else if (command == 5) {
                 System.out.println("Самая большая сумма расходов составила " + expensesManager.findMaxExpense() + " тенге.");
+            } else if (command == 6) {
+                expensesManager.removeAllExpenses();
+            } else if (command == 7) {
+                System.out.println("Введите сумму, которую желаете удалить");
+                int expense = scanner.nextInt();
+                expensesManager.removeExpense(expense);
             } else if (command == 0) {
                 System.out.println("Выход");
                 break;
@@ -49,99 +55,114 @@ public class FinancialAppArray {
         }
     }
 
-        public static void printMenu () {
-            System.out.println("Что вы хотите сделать? ");
-            System.out.println("1 - Конвертировать валюту");
-            System.out.println("2 - Получить совет");
-            System.out.println("3 - Ввести трату");
-            System.out.println("4 - Показать траты");
-            System.out.println("5 - Показать самую большую сумму расходов");
-            System.out.println("0 - Выход");
+    public static void printMenu() {
+        System.out.println("Что вы хотите сделать? ");
+        System.out.println("1 - Конвертировать валюту");
+        System.out.println("2 - Получить совет");
+        System.out.println("3 - Ввести трату");
+        System.out.println("4 - Показать траты");
+        System.out.println("5 - Показать самую большую сумму расходов");
+        System.out.println("6 - Очистить список трат");
+        System.out.println("7 - Найти и удалить трату");
+        System.out.println("0 - Выход");
+    }
+}
+
+
+class Converter {
+    double rateUSD;
+    double rateEUR;
+    double rateJPY;
+
+    Converter(double usd, double eur, double jpy) {
+        rateUSD = usd;
+        rateEUR = eur;
+        rateJPY = jpy;
+    }
+
+    void convert(double tenges, int currency) {
+        if (currency == 1) {
+            System.out.println("Ваши сбережения в долларах: " + tenges / rateUSD);
+        } else if (currency == 2) {
+            System.out.println("Ваши сбережения в евро: " + tenges / rateEUR);
+        } else if (currency == 3) {
+            System.out.println("Ваши сбережения в иенах: " + tenges / rateJPY);
+        } else {
+            System.out.println("Неизвестная валюта");
+        }
+    }
+}
+
+class DinnerAdvisor {
+    void getAdvice(double moneyBeforeSalary, int daysBeforeSalary) {
+        if (moneyBeforeSalary < 15_000) {
+            System.out.println("Сегодня лучше поесть дома. Экономьте, и вы дотянете до зарплаты!");
+        } else if (moneyBeforeSalary < 50_000) {
+            if (daysBeforeSalary < 10) {
+                System.out.println("Окей, пора в Макдак!");
+            } else {
+                System.out.println("Сегодня лучше поесть дома. Экономьте, и вы дотянете до зарплаты!");
+            }
+        } else if (moneyBeforeSalary < 150_000) {
+            if (daysBeforeSalary < 10) {
+                System.out.println("Неплохо! Прикупите долларов и зайдите поужинать в классное место. :)");
+            } else {
+                System.out.println("Окей, пора в Макдак!");
+            }
+        } else {
+            if (daysBeforeSalary < 10) {
+                System.out.println("Отлично! Заказывайте крабов!");
+            } else {
+                System.out.println("Неплохо! Прикупите долларов и зайдите поужинать в классное место. :)");
+            }
+        }
+    }
+}
+
+
+class ExpensesManager {
+    ArrayList<Double> expenses; // Замените массив списком
+
+    ExpensesManager() {
+        expenses = new ArrayList<>(); // Создайте список в конструкторе
+    }
+
+    // Номер дня больше не нужен
+    double saveExpense(double moneyBeforeSalary, double expense, int day) {
+        moneyBeforeSalary = moneyBeforeSalary - expense;
+        System.out.println("Значение сохранено! Ваш текущий баланс в тенге: " + moneyBeforeSalary);
+        if (moneyBeforeSalary < 5000) {
+            System.out.println("На вашем счету осталось совсем немного. Стоит начать экономить!");
+        }
+        return moneyBeforeSalary;
+    }
+
+    void printAllExpenses() {
+        for (int i = 0; i < expenses.size(); i++) {
+            System.out.println("Трата № " + (i + 1) + ". Потрачено " + expenses.get(i) + " тенге");
         }
     }
 
-
-    class Converter {
-            double rateUSD;
-            double rateEUR;
-            double rateJPY;
-
-            Converter(double usd, double eur, double jpy) {
-                rateUSD = usd;
-                rateEUR = eur;
-                rateJPY = jpy;
-            }
-
-            void convert(double tenges, int currency) {
-                if (currency == 1) {
-                    System.out.println("Ваши сбережения в долларах: " + tenges / rateUSD);
-                } else if (currency == 2) {
-                    System.out.println("Ваши сбережения в евро: " + tenges / rateEUR);
-                } else if (currency == 3) {
-                    System.out.println("Ваши сбережения в иенах: " + tenges / rateJPY);
-                } else {
-                    System.out.println("Неизвестная валюта");
-                }
+    double findMaxExpense() {
+        double maxExpense = 0;
+        for (Double expense : expenses) { // Используйте сокращённую форму цикла
+            if (expense > maxExpense) {
+                maxExpense = expense;
             }
         }
+        return maxExpense;
+    }
 
-        class DinnerAdvisor {
-            void getAdvice(double moneyBeforeSalary, int daysBeforeSalary) {
-                if (moneyBeforeSalary < 15_000) {
-                    System.out.println("Сегодня лучше поесть дома. Экономьте, и вы дотянете до зарплаты!");
-                } else if (moneyBeforeSalary < 50_000) {
-                    if (daysBeforeSalary < 10) {
-                        System.out.println("Окей, пора в Макдак!");
-                    } else {
-                        System.out.println("Сегодня лучше поесть дома. Экономьте, и вы дотянете до зарплаты!");
-                    }
-                } else if (moneyBeforeSalary < 150_000) {
-                    if (daysBeforeSalary < 10) {
-                        System.out.println("Неплохо! Прикупите долларов и зайдите поужинать в классное место. :)");
-                    } else {
-                        System.out.println("Окей, пора в Макдак!");
-                    }
-                } else {
-                    if (daysBeforeSalary < 10) {
-                        System.out.println("Отлично! Заказывайте крабов!");
-                    } else {
-                        System.out.println("Неплохо! Прикупите долларов и зайдите поужинать в классное место. :)");
-                    }
-                }
-            }
+    void removeAllExpenses() {
+        expenses.clear();
+        System.out.println("Список трат пуст.");
+    }
+
+    void removeExpense(double expense) {
+        if (expenses.contains(expense)) {
+            System.out.println("Трата удалена!");
+        } else {
+            System.out.println("Такой траты нет.");
         }
-
-
-        class ExpensesManager {
-            ArrayList<Double> expenses; // Замените массив списком
-
-            ExpensesManager() {
-                expenses = new ArrayList<>(); // Создайте список в конструкторе
-            }
-
-            // Номер дня больше не нужен
-            double saveExpense(double moneyBeforeSalary, double expense, int day) {
-                moneyBeforeSalary = moneyBeforeSalary - expense;
-                System.out.println("Значение сохранено! Ваш текущий баланс в тенге: " + moneyBeforeSalary);
-                if (moneyBeforeSalary < 5000) {
-                    System.out.println("На вашем счету осталось совсем немного. Стоит начать экономить!");
-                }
-                return moneyBeforeSalary;
-            }
-
-            void printAllExpenses() {
-                for (int i = 0; i < expenses.size(); i++) {
-                    System.out.println("Трата № " + (i + 1) + ". Потрачено " + expenses.get(i) + " тенге");
-                }
-            }
-
-            double findMaxExpense() {
-                double maxExpense = 0;
-                for (Double expense : expenses) { // Используйте сокращённую форму цикла
-                    if (expense > maxExpense) {
-                        maxExpense = expense;
-                    }
-                }
-                return maxExpense;
-            }
-        }
+    }
+}
