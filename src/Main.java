@@ -1,24 +1,17 @@
-package Practices;
-
-import src.Converter;
-import src.MonthData;
-import src.StepTracker;
+package src;
 
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
-        Converter converter = new Converter();
-        MonthData monthData = new MonthData();
-        StepTracker stepTracker = new StepTracker();
+        StepTracker stepTracker = new StepTracker(scanner);
 
         while (true) {
             printMenu();
             int option = scanner.nextInt();
             if (option == 1) {
-                monthData.printDayAndStepsFromMonth();
+                stepTracker.addNewNumberStepsPerDay();
             } else if (option == 2) {
                 stepTracker.changeStepGoal();
             } else if (option == 3) {
