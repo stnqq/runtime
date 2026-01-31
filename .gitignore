@@ -1,0 +1,13 @@
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Build outputs
+out/
+target/
+build/
+
+# Java
+*.class
