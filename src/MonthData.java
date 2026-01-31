@@ -14,7 +14,6 @@ public class MonthData {
         for (int day : days) {
             sumSteps += day;
         }
-        System.out.print("Общая сумма шагов за месяц:");
         return sumSteps;
     }
 
@@ -27,7 +26,6 @@ public class MonthData {
                 maxDay = i;
             }
         }
-        System.out.print("Наибольшее количество шагов за месяц был в день - " + maxDay + "\n" + "Количество шагов составило: " + maxStepsCount);
         return maxStepsCount;
     }
 
