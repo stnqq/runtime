@@ -19,11 +19,9 @@ public class MonthData {
 
     public int maxStepsForMonth() {
         int maxStepsCount = 0;
-        int maxDay = 0;
-        for (int i = 0; i < days.length; i++) {
-            if (days[i] > maxStepsCount) {
-                maxStepsCount = days[i];
-                maxDay = i;
+        for (int day : days) {
+            if (day > maxStepsCount) {
+                maxStepsCount = day;
             }
         }
         return maxStepsCount;
