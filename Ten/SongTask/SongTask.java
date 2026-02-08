@@ -1,4 +1,4 @@
-package Ten;
+package Ten.SongTask;
 
 public class SongTask {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package Ten;
+package Ten.LAFTask;
 
 public class Umbrella {
 }

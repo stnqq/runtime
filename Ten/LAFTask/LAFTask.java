@@ -1,6 +1,4 @@
-package Ten;
-
-import java.util.ArrayList;
+package Ten.LAFTask;
 
 public class LAFTask {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package Ten;
+package Ten.SongTask;
 
 import java.util.Objects;
 
