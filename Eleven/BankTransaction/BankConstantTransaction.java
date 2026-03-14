@@ -17,8 +17,8 @@ public class BankConstantTransaction {
 
     public static class TransactionValidator {
         // объявите константы
-        final static int MIN_AMOUNT = 100;
-        final static int MAX_AMOUNT = 100000;
+        static final int MIN_AMOUNT = 100;
+        static final int MAX_AMOUNT = 100000;
 
         public static int getMinAmount() {
             return MIN_AMOUNT;

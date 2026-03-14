@@ -9,8 +9,7 @@ public class Practice {
 
         hamsters[0].eat();
         hamsters[1].eat();
-
-    }
+final int number;    }
 
     static class Hamster {
         String name;
