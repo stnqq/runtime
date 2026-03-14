@@ -16,7 +16,8 @@ public class Student {
     public void studentCounterIncrease() {
         studentCounter++;
     }
-    public static int studentTotalCount(){
+
+    public static int studentTotalCount() {
         return studentCounter;
     }
 
