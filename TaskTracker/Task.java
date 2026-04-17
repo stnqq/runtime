@@ -1,10 +1,10 @@
 package TaskTracker;
 
 public class Task {
-    String name;
-    String description;
-    int ID;
-    Status status;
+    private String name;
+    private String description;
+    private int ID;
+    private Status status;
 
 
     public  String getName() {
@@ -39,16 +39,15 @@ public class Task {
         this.status = status;
     }
 
-    public Task(String name, String description, int ID, Status status) {
+    public Task(String name, String description, Status status) {
         this.name = name;
         this.description = description;
-        this.ID = ID;
         this.status = status;
     }
 
     @Override
     public String toString() {
-        return "Task [name=" + name + ", description=" + description + ", ID=" + ID + ", status=" + status;
+        return "Task [ID=" + ID + ", name=" + name + ", description=" + description + ", status=" + status + "]";
     }
 
 }
