@@ -3,51 +3,51 @@ package TaskTracker;
 public class Task {
     private String name;
     private String description;
-    private int ID;
-    private Status status;
+    private int id;
+    private TaskStatus status;
 
+    public Task(String name, String description) {
+        this.name = name;
+        this.description = description;
+        this.status = TaskStatus.NEW;
+    }
 
-    public  String getName() {
-        return name;
+    public String toString() {
+        return "Task [id=" + getId() +
+                ", name=" + getName() +
+                ", description=" + getDescription() +
+                ", status=" + getStatus() + "]";
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public  String getDescription() {
-        return description;
+    public String getName() {
+        return name;
     }
 
     public void setDescription(String description) {
         this.description = description;
     }
 
-    public  int getID() {
-        return ID;
+    public String getDescription() {
+        return description;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public  Status getStatus() {
+    public int getId() {
+        return id;
+    }
+
+    public void setStatus(TaskStatus taskStatus) {
+        this.status = taskStatus;
+    }
+
+    public TaskStatus getStatus() {
         return status;
     }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
-    public Task(String name, String description, Status status) {
-        this.name = name;
-        this.description = description;
-        this.status = status;
-    }
-
-    @Override
-    public String toString() {
-        return "Task [ID=" + ID + ", name=" + name + ", description=" + description + ", status=" + status + "]";
-    }
-
 }

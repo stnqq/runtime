@@ -1,30 +1,38 @@
 package TaskTracker;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Epic extends Task {
 
-    public List<Integer> getSubtaskIds() {
-        return subtaskIds;
-    }
+    private List<Integer> subtaskIds = new ArrayList<>();
 
-    public void setSubtaskIds(List<Integer> subtaskIds) {
-        this.subtaskIds = subtaskIds;
-    }
-
-    private List<Integer> subtaskIds;
-
-    public Epic(String name, String description, Status status, List<Integer> subtaskIds) {
-        super(name, description, status);
-        this.subtaskIds = subtaskIds;
+    public Epic(String name, String description) {
+        super(name, description);
     }
 
     @Override
     public String toString() {
-        return "Epic [ID=" + getID() +
+        return "Epic [id=" + getId() +
                 ", name=" + getName() +
                 ", description=" + getDescription() +
                 ", status=" + getStatus() +
-                ", subtaskIds=" + subtaskIds + "]";
+                ", subtaskIds=" + getSubtaskIds() + "]";
+    }
+
+    public List<Integer> getSubtaskIds() {
+        return new ArrayList<>(subtaskIds);
+    }
+
+    public void addSubtaskId(int subtaskId) {
+        subtaskIds.add(subtaskId);
+    }
+
+    public void removeSubtaskId(int subtaskId) {
+        subtaskIds.remove(Integer.valueOf(subtaskId));
+    }
+
+    public void clearSubtaskIds(){
+        subtaskIds.clear();
     }
 }

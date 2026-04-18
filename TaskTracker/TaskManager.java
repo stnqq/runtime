@@ -1,6 +1,5 @@
 package TaskTracker;
 
-import java.util.Collection;
 import java.util.List;
 
 public interface TaskManager {
@@ -8,7 +7,13 @@ public interface TaskManager {
 
     Task getTaskById(int id);
 
-    Collection<Task> getAllTasks();
+    List<Task> getAllTasks();
+
+    List<Epic> getAllEpics();
+
+    List<Subtask> getAllSubtasks();
+
+    List<Subtask> getSubtasksOfEpic(int epicId);
 
     void deleteTaskById(int id);
 
@@ -35,14 +40,6 @@ public interface TaskManager {
     void deleteSubtaskById(int id);
 
     void deleteAllSubtasks();
-
-    void printAllTasks();
-
-    void printAllEpics();
-
-    void printAllSubtasks();
-
-    void printSubtasksOfEpic(int epicId);
 
     List<Task> getHistory();
 }
